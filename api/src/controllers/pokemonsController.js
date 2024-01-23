@@ -1,4 +1,5 @@
 const { Pokemon } = require('../db');
+const axios = require('axios');
 
 
 const getPokemon = async() => {
@@ -8,7 +9,7 @@ const getPokemon = async() => {
 
 const getPokemonByID = async(id) => {
     const pokemonFound = await Pokemon.findByPk(id);
-    console.log(`El id es: ${id}`)
+    console.log(`El id es: ${id} y el pokemon es: ${pokemonFound.name}`)
     return pokemonFound
 };
 
