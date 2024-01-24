@@ -1,6 +1,6 @@
 const { getTypePokemon } = require('../controllers/typeController')
 
-const getAllPokemonsHandler = async( req , res) => {
+const getAllTypePokemonsHandler = async( req , res) => {
     try {
         const response = await getTypePokemon()
         res.status(200).json(response)
@@ -10,5 +10,5 @@ const getAllPokemonsHandler = async( req , res) => {
 }
 
 module.exports = {
-    getAllPokemonsHandler
+    getAllTypePokemonsHandler
 }
