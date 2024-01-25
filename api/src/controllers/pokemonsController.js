@@ -1,9 +1,17 @@
-const { Pokemon } = require('../db');
+const { Pokemon, Type } = require('../db');
 const axios = require('axios');
 
-
 const getPokemonsDb = async () => {
-  const allPokemonsDb = await Pokemon.findAll()
+  const allPokemonsDb = await Pokemon.findAll({
+    include: [
+      {
+        model: Type,
+        atributes: ['name']
+      },
+    ]
+
+    }
+  )
   return allPokemonsDb
   };
 
@@ -37,7 +45,6 @@ const getPokemonsApi = async () => {
     }
 };
   
-  
 const getAllPokemons = async (name) => {
   //console.log('estoy en el controller', name);
   const pokemonsDb = await getPokemonsDb();
@@ -64,15 +71,17 @@ const getPokemonsById = async (id) => {
     throw new Error(`Pokemon no encontrado, id: ${id} incorrecto`);
   }
 };
-
-
-
   
-const createPokemon = async ( name, image, type, hp,  attack, defense ,speed, height, weight) => {
-    const newPokemon = await Pokemon.create({ name, image, type, hp, attack, defense, speed, height, weight});
+const createPokemon = async ( name, image,  hp,  attack, defense ,speed, height, weight) => {
+    const newPokemon = await Pokemon.create({ name, image, hp, attack, defense, speed, height, weight});
+    //Relacion con types
+/*     type.forEach(async(t) => {
+      let typeDB = await Type.findAll({where: {types: t}})
+      console.log("types:", typeDB)
+      await newPokemon.addType(typeDB)
+    }) */
     return newPokemon;
 }
-
 module.exports = {
     getAllPokemons,
     getPokemonsById,
