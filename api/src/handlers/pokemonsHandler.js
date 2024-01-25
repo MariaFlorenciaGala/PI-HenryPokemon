@@ -36,8 +36,8 @@ const getPokemonByNameHandler = async( req , res) => {
 
 const postPokemonsHandler = async( req , res) => {
     try {
-        const { name, image, type, hp, defense, speed, height, weight, createdInDB } = req.body;
-        const response = await createPokemon(name, image, type, hp, defense, speed, height, weight, createdInDB);
+        const { name, image, hp, defense, speed, height, weight, createdInDB } = req.body;
+        const response = await createPokemon(name, image, hp, defense, speed, height, weight, createdInDB);
         res.status(201).json(response)
 
         console.log(`Se creó el pokemón "${name}" con éxito. `)

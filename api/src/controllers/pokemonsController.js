@@ -6,13 +6,16 @@ const getPokemonsDb = async () => {
     include: [
       {
         model: Type,
-        atributes: ['name']
+        atributes: ['name'],
+        through:{
+          atributtes:[],
+        }
       },
     ]
 
     }
   )
-  return allPokemonsDb
+    return allPokemonsDb
   };
 
 const getPokemonsApi = async () => {
@@ -60,6 +63,7 @@ const getAllPokemons = async (name) => {
     throw new Error("No se encontro ningun pokemon con ese nombre");
   }
   return allPokemon;
+
 };
 
 const getPokemonsById = async (id) => {
@@ -74,12 +78,6 @@ const getPokemonsById = async (id) => {
   
 const createPokemon = async ( name, image,  hp,  attack, defense ,speed, height, weight) => {
     const newPokemon = await Pokemon.create({ name, image, hp, attack, defense, speed, height, weight});
-    //Relacion con types
-/*     type.forEach(async(t) => {
-      let typeDB = await Type.findAll({where: {types: t}})
-      console.log("types:", typeDB)
-      await newPokemon.addType(typeDB)
-    }) */
     return newPokemon;
 }
 module.exports = {

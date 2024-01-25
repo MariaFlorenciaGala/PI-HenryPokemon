@@ -9,11 +9,11 @@ const { getAllPokemonsHandler, getPokemonByIdHandler, getPokemonByNameHandler, p
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-pokemonRouter.get('', getAllPokemonsHandler)
-
 pokemonRouter.get('/:id', getPokemonByIdHandler)
 
 pokemonRouter.get('/name', getPokemonByNameHandler)
+
+pokemonRouter.get('', getAllPokemonsHandler)
 
 pokemonRouter.post('', postPokemonsHandler)
 
